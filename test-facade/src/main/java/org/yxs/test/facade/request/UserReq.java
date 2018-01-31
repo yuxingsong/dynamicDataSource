@@ -8,6 +8,16 @@ import java.io.Serializable;
 public class UserReq implements Serializable{
     private Integer id;
 
+    public String getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(String dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    private String dataSource;
+
     public Integer getId() {
         return id;
     }

@@ -10,6 +10,9 @@ import org.yxs.test.facade.request.UserReq;
 import org.yxs.test.facade.response.BasicResp;
 import org.yxs.test.facade.response.UserDTO;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by yuxingsong on 2017/10/13 0013.
  */
@@ -20,7 +23,9 @@ public class UserController {
     private UserFacade userFacade;
 
     @RequestMapping(value = "/query", method = RequestMethod.POST)
-    public BasicResp<UserDTO> query(@RequestBody UserReq userReq) {
+    public BasicResp<UserDTO> query(@RequestBody UserReq userReq,HttpServletRequest request) {
+        HttpSession session =request.getSession();
+        session.setAttribute("ds",userReq.getDataSource());
         return userFacade.queryUserById(userReq.getId());
     }
 }
